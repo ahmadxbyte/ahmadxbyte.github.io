@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ahmad Husain · Web Developer Portfolio</title>
+  <!-- Google Font + Font Awesome + AOS -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
+    }
+
+    body {
+      background-color: #0c1119;
+      color: #e2e8f0;
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+    }
+
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #1e293b;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #3b82f6;
+      border-radius: 12px;
+    }
+
+    .navbar {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      padding: 1.3rem 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(12, 17, 25, 0.8);
+      backdrop-filter: blur(15px);
+      -webkit-backdrop-filter: blur(15px);
+      border-bottom: 1px solid #2563eb33;
+      z-index: 1000;
+    }
+
+    .logo {
+      font-size: 1.9rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #60a5fa, #c084fc);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      letter-spacing: -0.5px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.8rem;
+      align-items: center;
+    }
+
+    .nav-links a {
+      color: #e2e8f0;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 1rem;
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -6px;
+      left: 0;
+      width: 0%;
+      height: 2px;
+      background: linear-gradient(90deg, #3b82f6, #a855f7);
+      transition: 0.3s;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .web3-badge {
+      background: transparent;
+      border: 1.5px solid #3b82f6;
+      color: #3b82f6;
+      padding: 0.6rem 1.5rem;
+      border-radius: 40px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .web3-badge:hover {
+      background: #3b82f6;
+      color: #0c1119;
+      box-shadow: 0 0 20px #3b82f6;
+    }
+
+    .hamburger {
+      display: none;
+      font-size: 2rem;
+      color: #3b82f6;
+      cursor: pointer;
+    }
+
+    @media (max-width: 800px) {
+      .nav-links {
+        position: fixed;
+        top: 80px;
+        right: -100%;
+        flex-direction: column;
+        background: rgba(20, 30, 45, 0.98);
+        backdrop-filter: blur(20px);
+        width: 70%;
+        height: 100vh;
+        padding: 3rem 2rem;
+        gap: 2.5rem;
+        transition: 0.4s ease;
+        border-left: 1px solid #3b82f633;
+      }
+      .nav-links.active {
+        right: 0;
+      }
+      .hamburger {
+        display: block;
+      }
+    }
+
+    section {
+      padding: 100px 5% 80px;
+      position: relative;
+    }
+
+    .section-title {
+      font-size: 3rem;
+      font-weight: 700;
+      margin-bottom: 3.5rem;
+      background: linear-gradient(135deg, #ffffff, #9bb4d8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      display: inline-block;
+    }
+
+    /* HERO with parallax (modern tech background) */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding-top: 130px;
+      position: relative;
+      overflow: hidden;
+      background: url('https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=2070&auto=format&fit=crop') center/cover no-repeat fixed;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 30% 30%, rgba(0,80,150,0.2), #0a0f1a 80%);
+      backdrop-filter: brightness(0.7);
+    }
+    .hero-content {
+      position: relative;
+      z-index: 5;
+      max-width: 1000px;
+    }
+    .avatar-wrapper {
+      width: 150px;
+      height: 150px;
+      margin: 0 auto 1.8rem;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 3px solid #3b82f6;
+      box-shadow: 0 0 50px #2563eb;
+    }
+    .avatar-wrapper img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .hero h1 {
+      font-size: clamp(2.8rem, 8vw, 5.5rem);
+      font-weight: 800;
+    }
+    .hero h1 span {
+      background: linear-gradient(135deg, #3b82f6, #e879f9);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero p {
+      font-size: 1.3rem;
+      color: #b9d0f0;
+      margin: 1rem 0 2rem;
+    }
+    .hero-meta {
+      display: flex;
+      gap: 2.5rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      font-size: 1.1rem;
+      color: #b0caf0;
+    }
+    .hero-meta i {
+      color: #3b82f6;
+      margin-right: 8px;
+    }
+
+    /* about */
+    .about {
+      background: #0f1622;
+      border-bottom: 1px solid #1e2a3a;
+    }
+    .about-grid {
+      display: flex;
+      gap: 3rem;
+      flex-wrap: wrap;
+    }
+    .about-text {
+      flex: 2;
+      font-size: 1.2rem;
+      line-height: 1.8;
+      color: #cbd5e1;
+    }
+    .edu-experience {
+      flex: 1;
+      background: #1a2535;
+      border-radius: 30px;
+      padding: 2rem;
+      border: 1px solid #2d3a4f;
+    }
+    .edu-experience h3 {
+      color: #90b4f0;
+      margin-bottom: 1.2rem;
+      font-size: 1.4rem;
+    }
+    .edu-experience ul {
+      list-style: none;
+    }
+    .edu-experience li {
+      margin-bottom: 1rem;
+      padding-left: 1.5rem;
+      border-left: 2px solid #3b82f6;
+    }
+
+    /* SKILLS section — semua skill */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 1.5rem;
+      margin: 2.5rem 0 1rem;
+    }
+    .skill-card {
+      background: #1b2637;
+      border: 1px solid #31465c;
+      border-radius: 30px;
+      padding: 1.5rem 0.5rem;
+      text-align: center;
+      transition: 0.2s;
+      font-weight: 600;
+      font-size: 1.2rem;
+      backdrop-filter: blur(4px);
+    }
+    .skill-card i {
+      font-size: 2.2rem;
+      color: #3b82f6;
+      margin-bottom: 0.5rem;
+      display: block;
+    }
+    .skill-card:hover {
+      border-color: #3b82f6;
+      transform: scale(1.05);
+      box-shadow: 0 0 30px #3b82f6;
+    }
+
+    /* projects grid — diambil persis dari website asli */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+    .project-card {
+      background: rgba(20, 30, 45, 0.7);
+      backdrop-filter: blur(8px);
+      border: 1px solid #2f4057;
+      border-radius: 36px;
+      padding: 2rem;
+      transition: 0.25s ease;
+    }
+    .project-card:hover {
+      transform: translateY(-12px);
+      border-color: #3b82f6;
+      box-shadow: 0 30px 50px -20px #2563eb;
+    }
+    .project-icon {
+      font-size: 2.5rem;
+      color: #3b82f6;
+      margin-bottom: 1rem;
+    }
+    .project-card h3 {
+      font-size: 1.8rem;
+      margin-bottom: 0.8rem;
+    }
+    .project-card p {
+      color: #b4c9f0;
+      line-height: 1.5;
+    }
+    .project-link {
+      display: inline-block;
+      margin-top: 1.5rem;
+      color: #90caf9;
+      text-decoration: none;
+      font-weight: 600;
+      border-bottom: 1px dotted;
+    }
+
+    /* GALLERY gambar coding/tech stabil */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+    }
+    .gallery-item {
+      border-radius: 30px;
+      overflow: hidden;
+      aspect-ratio: 1/1;
+      border: 2px solid transparent;
+      transition: 0.3s;
+      background-color: #1a293b;
+    }
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .gallery-item:hover {
+      border-color: #3b82f6;
+      box-shadow: 0 0 40px #3b82f6;
+    }
+
+    /* contact */
+    .contact-container {
+      display: flex;
+      gap: 3rem;
+      flex-wrap: wrap;
+    }
+    .contact-form {
+      flex: 2;
+      background: #182235;
+      border-radius: 48px;
+      padding: 2.5rem;
+      border: 1px solid #2e405b;
+    }
+    .form-group { margin-bottom: 1.5rem; }
+    input, textarea {
+      width: 100%;
+      padding: 1.1rem 1.8rem;
+      background: #0f1a29;
+      border: 1px solid #2e405b;
+      border-radius: 60px;
+      color: white;
+      font-size: 1rem;
+    }
+    textarea { border-radius: 30px; }
+    input:focus, textarea:focus {
+      outline: none; border-color: #3b82f6; box-shadow: 0 0 15px #3b82f6;
+    }
+    .submit-btn {
+      background: linear-gradient(90deg, #3b82f6, #a855f7);
+      color: white;
+      border: none;
+      padding: 1rem 2.8rem;
+      border-radius: 60px;
+      font-weight: 700;
+      font-size: 1.1rem;
+      cursor: pointer;
+    }
+    .contact-info {
+      flex: 1;
+      background: #182235;
+      border-radius: 48px;
+      padding: 2.5rem;
+      border: 1px solid #2e405b;
+    }
+    .social-links {
+      display: flex;
+      gap: 1.5rem;
+      font-size: 2.2rem;
+      margin: 2rem 0;
+    }
+    .social-links a { color: #98aec6; }
+    .social-links a:hover { color: #3b82f6; }
+
+    footer {
+      text-align: center;
+      padding: 2rem;
+      border-top: 1px solid #1e2a3a;
+      color: #6b8bb0;
+    }
+    @media (max-width: 600px) {
+      .section-title { font-size: 2.5rem; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="logo">✦ ahmadhusain</div>
+    <div class="nav-links" id="navLinks">
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#contact">Contact</a>
+      <span class="web3-badge" onclick="alert('🌐 web3 dev mode')"><i class="fas fa-cube"></i> web3</span>
+    </div>
+    <div class="hamburger" id="hamburger"><i class="fas fa-bars"></i></div>
+  </nav>
+
+  <!-- HERO -->
+  <section id="home" class="hero">
+    <div class="hero-content" data-aos="fade-up" data-aos-duration="1200">
+      <div class="avatar-wrapper">
+        <img src="https://ui-avatars.com/api/?name=Ahmad+Husain+Ardiansyah&size=300&length=2&background=3b82f6&color=fff&bold=true" alt="Ahmad Husain">
+      </div>
+      <h1>Ahmad Husain <span>Ardiansyah</span></h1>
+      <p>Web Developer · Full Stack Enthusiast · Tim Developer & Implementator</p>
+      <div class="hero-meta">
+        <span><i class="fas fa-calendar-alt"></i> Jakarta, 2 Mei 1998</span>
+        <span><i class="fas fa-map-pin"></i> Magelang / Remote</span>
+        <span><i class="fas fa-code"></i> 15+ skill siap</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- About + Pengalaman terbaru diurutkan -->
+  <section id="about" class="about">
+    <h2 class="section-title" data-aos="fade-right">/ tentang saya</h2>
+    <div class="about-grid">
+      <div class="about-text" data-aos="fade-up">
+        <p>Saya adalah web developer dengan latar belakang pendidikan Teknik Informatika di Universitas Muhammadiyah Magelang (lulus 2022). Memiliki pengalaman sebagai Asisten Dosen untuk mata kuliah Sistem Manajemen Database, Jaringan Komputer, Pemrograman Web 1, dan Perangkat Komputer.</p>
+        <p style="margin-top: 1.5rem;">Membangun aplikasi web sejak 2018, fokus pada solusi nyata seperti sistem kasir, rekomendasi kuliner, manajemen bengkel, dan donasi berbasis WebGIS. Saat ini aktif sebagai Front End Developer dan anggota tim developer & implementator untuk berbagai proyek.</p>
+      </div>
+      <div class="edu-experience" data-aos="fade-left">
+        <h3>📚 Pendidikan</h3>
+        <ul>
+          <li>2017-2022 S1 Informatika - Univ. Muhammadiyah Magelang</li>
+          <li>2014-2017 SMAN 1 Sukamakmur (IPA)</li>
+          <li>2011-2014 SMPN 2 Sukamakmur</li>
+        </ul>
+        <h3 style="margin-top: 2rem;">💼 Pengalaman (terbaru)</h3>
+        <ul>
+          <li><strong>Front End Developer</strong> (2025-Sekarang) <br><small>Mengembangkan antarmuka pengguna dengan Vue, TypeScript, Tailwind, Laravel.</small></li>
+          <li><strong>Tim Developer & Implementator</strong> (2024-Sekarang) <br><small>Bagian dari tim pengembangan dan implementasi sistem untuk klien, integrasi fitur, pendampingan.</small></li>
+          <li><strong>Full Stack Developer</strong> (2022-2024) <br><small>Membangun aplikasi web end-to-end menggunakan Laravel, Vue, MySQL.</small></li>
+          <li><strong>Asisten Dosen UMM</strong> (2019-2020) <br><small>Database, Web Programming, Jaringan.</small></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS: tambahan Tailwind, Laravel, Canva, Microsoft Office -->
+  <section id="skills">
+    <h2 class="section-title" data-aos="fade-right">/ keahlian inti</h2>
+    <div class="skills-grid">
+      <!-- Core web dev -->
+      <div class="skill-card"><i class="fab fa-php"></i> PHP</div>
+      <div class="skill-card"><i class="fab fa-html5"></i> HTML</div>
+      <div class="skill-card"><i class="fab fa-css3-alt"></i> CSS</div>
+      <div class="skill-card"><i class="fab fa-js"></i> JavaScript</div>
+      <div class="skill-card"><i class="fas fa-code"></i> jQuery</div>
+      <div class="skill-card"><i class="fab fa-microsoft"></i> ASPX</div>
+      <div class="skill-card"><i class="fas fa-database"></i> SQL Server</div>
+      <div class="skill-card"><i class="fas fa-database"></i> MySQL</div>
+      <!-- Baru diminta -->
+      <div class="skill-card"><i class="fab fa-vuejs"></i> Vue</div>
+      <div class="skill-card"><i class="fas fa-code"></i> TypeScript</div>
+      <div class="skill-card"><i class="fab fa-laravel"></i> Laravel</div>
+      <div class="skill-card"><i class="fas fa-paint-brush"></i> Canva</div>
+      <div class="skill-card"><i class="fas fa-file-excel"></i> Excel</div>
+      <div class="skill-card"><i class="fas fa-file-word"></i> Word</div>
+      <div class="skill-card"><i class="fas fa-file-powerpoint"></i> PPT</div>
+      <!-- Tambahan dari asli (CI, Bootstrap, Corel) -->
+      <div class="skill-card"><i class="fas fa-leaf"></i> CI 3</div>
+      <div class="skill-card"><i class="fab fa-bootstrap"></i> Bootstrap</div>
+      <div class="skill-card"><i class="fas fa-paint-brush"></i> Corel Draw</div>
+    </div>
+  </section>
+
+  <!-- PROJECTS (tetap) -->
+  <section id="projects">
+    <h2 class="section-title" data-aos="fade-right">/ projek saya</h2>
+    <div class="projects-grid">
+      <div class="project-card" data-aos="zoom-in-up" data-aos-delay="100">
+        <div class="project-icon"><i class="fas fa-utensils"></i></div>
+        <h3>Kuliner</h3>
+        <p>Aplikasi web rekomendasi kuliner dengan metode Item-based Collaborative Filtering.</p>
+        <a href="#" class="project-link">Lihat Script →</a>
+      </div>
+      <div class="project-card" data-aos="zoom-in-up" data-aos-delay="150">
+        <div class="project-icon"><i class="fas fa-cash-register"></i></div>
+        <h3>Kasir</h3>
+        <p>Manajemen transaksi jual beli dengan barcode dan diskon.</p>
+        <a href="#" class="project-link">Lihat Script →</a>
+      </div>
+      <div class="project-card" data-aos="zoom-in-up" data-aos-delay="200">
+        <div class="project-icon"><i class="fas fa-wrench"></i></div>
+        <h3>Bengkel</h3>
+        <p>Penjualan sparepart dan manajemen servis motor.</p>
+        <a href="#" class="project-link">Lihat Script →</a>
+      </div>
+      <div class="project-card" data-aos="zoom-in-up" data-aos-delay="250">
+        <div class="project-icon"><i class="fas fa-coffee"></i></div>
+        <h3>Coffe.ku</h3>
+        <p>Penjualan angkringan dengan fitur split payment.</p>
+        <a href="#" class="project-link">Lihat Script →</a>
+      </div>
+      <div class="project-card" data-aos="zoom-in-up" data-aos-delay="300">
+        <div class="project-icon"><i class="fas fa-hand-holding-heart"></i></div>
+        <h3>Donasi</h3>
+        <p>Pengelola donasi dilengkapi WebGIS untuk view user.</p>
+        <a href="#" class="project-link">Lihat Script →</a>
+      </div>
+      <div class="project-card" data-aos="zoom-in-up" data-aos-delay="350">
+        <div class="project-icon"><i class="fas fa-ticket-alt"></i></div>
+        <h3>Tiket</h3>
+        <p>Penjualan tiket berdasarkan nomor tempat duduk.</p>
+        <a href="#" class="project-link">Lihat Script →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERY (coding theme) -->
+  <section id="gallery">
+    <h2 class="section-title" data-aos="fade-right">/ gallery</h2>
+    <div class="gallery-grid">
+      <div class="gallery-item"><img src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=400&h=400&fit=crop&auto=format" alt="coding setup" loading="lazy"></div>
+      <div class="gallery-item"><img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=400&h=400&fit=crop&auto=format" alt="laptop code" loading="lazy"></div>
+      <div class="gallery-item"><img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=400&h=400&fit=crop&auto=format" alt="terminal" loading="lazy"></div>
+      <div class="gallery-item"><img src="https://images.unsplash.com/photo-1542831371-29b0f74f9713?w=400&h=400&fit=crop&auto=format" alt="code closeup" loading="lazy"></div>
+      <div class="gallery-item"><img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=400&h=400&fit=crop&auto=format" alt="desktop setup" loading="lazy"></div>
+      <div class="gallery-item"><img src="https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=400&h=400&fit=crop&auto=format" alt="javascript code" loading="lazy"></div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <h2 class="section-title" data-aos="fade-right">/ kontak saya</h2>
+    <div class="contact-container">
+      <div class="contact-form" data-aos="fade-up">
+        <form onsubmit="event.preventDefault(); alert('Terima kasih! pesan anda telah saya terima.');">
+          <div class="form-group"><input type="text" placeholder="Nama"></div>
+          <div class="form-group"><input type="email" placeholder="Email"></div>
+          <div class="form-group"><textarea rows="4" placeholder="Pesan..."></textarea></div>
+          <button type="submit" class="submit-btn"><i class="fas fa-paper-plane"></i> Kirim</button>
+        </form>
+      </div>
+      <div class="contact-info" data-aos="fade-left">
+        <h3 style="font-size:1.8rem;">✨ hubungi</h3>
+        <p><i class="fas fa-envelope" style="color:#3b82f6;"></i> ahmad.husain@umm.ac.id</p>
+        <p><i class="fas fa-phone-alt" style="color:#3b82f6;"></i> +62 812-3456-7890</p>
+        <div class="social-links">
+          <a href="#"><i class="fab fa-github"></i></a>
+          <a href="#"><i class="fab fa-linkedin"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+        </div>
+        <p style="font-style:italic; margin-top:1.5rem;">"Terima kasih! pesan anda telah saya terima."</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2025 Ahmad Husain Ardiansyah — web developer portfolio, built with modern stack.</p>
+  </footer>
+
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init({ duration: 1000, once: true, offset: 80 });
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('navLinks');
+    hamburger.addEventListener('click', () => navLinks.classList.toggle('active'));
+    document.querySelectorAll('.nav-links a').forEach(l => l.addEventListener('click', () => navLinks.classList.remove('active')));
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if(target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    });
+  </script>
+</body>
+</html>
