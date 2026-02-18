@@ -160,7 +160,7 @@
       padding-top: 130px;
       position: relative;
       overflow: hidden;
-      background: url('https://www.google.com/url?sa=t&source=web&rct=j&url=https%3A%2F%2Fwww.vecteezy.com%2Ffree-photos%2Fweb-developer-background&ved=0CBYQjRxqGAoTCNCs8Yqi4pIDFQAAAAAdAAAAABDKAQ&opi=89978449') center/cover no-repeat fixed;
+      background: url('https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=2070&auto=format&fit=crop') center/cover no-repeat fixed;
     }
     .hero::before {
       content: '';
@@ -252,29 +252,66 @@
       border-left: 2px solid #3b82f6;
     }
 
-    /* SKILLS section — semua skill */
-    .skills-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-      gap: 1.5rem;
-      margin: 2.5rem 0 1rem;
+    /* ========== MARQUEE SKILLS (2 ROWS) ========== */
+    .skills-marquee {
+      margin: 3rem 0 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      overflow: hidden;
     }
+
+    .marquee-row {
+      overflow: hidden;
+      white-space: nowrap;
+      position: relative;
+      width: 100%;
+    }
+
+    .marquee-content {
+      display: inline-flex;
+      gap: 1.5rem;
+      animation: scroll-right 40s linear infinite;
+      will-change: transform;
+    }
+
+    .marquee-left .marquee-content {
+      animation: scroll-left 40s linear infinite;
+    }
+
+    /* Pause on hover */
+    .marquee-row:hover .marquee-content {
+      animation-play-state: paused;
+    }
+
+    @keyframes scroll-right {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    @keyframes scroll-left {
+      0% { transform: translateX(-50%); }
+      100% { transform: translateX(0); }
+    }
+
+    /* skill cards (reuse dari style sebelumnya) */
     .skill-card {
       background: #1b2637;
       border: 1px solid #31465c;
       border-radius: 30px;
-      padding: 1.5rem 0.5rem;
-      text-align: center;
-      transition: 0.2s;
+      padding: 1.5rem 2rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.8rem;
       font-weight: 600;
       font-size: 1.2rem;
       backdrop-filter: blur(4px);
+      transition: 0.2s;
+      white-space: nowrap;
     }
     .skill-card i {
-      font-size: 2.2rem;
+      font-size: 2rem;
       color: #3b82f6;
-      margin-bottom: 0.5rem;
-      display: block;
     }
     .skill-card:hover {
       border-color: #3b82f6;
@@ -282,7 +319,7 @@
       box-shadow: 0 0 30px #3b82f6;
     }
 
-    /* projects grid — diambil persis dari website asli */
+    /* projects grid */
     .projects-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -410,6 +447,7 @@
     }
     @media (max-width: 600px) {
       .section-title { font-size: 2.5rem; }
+      .skill-card { padding: 1rem 1.2rem; font-size: 1rem; }
     }
   </style>
 </head>
@@ -444,7 +482,7 @@
     </div>
   </section>
 
-  <!-- About + Pengalaman terbaru diurutkan -->
+  <!-- About + Pengalaman -->
   <section id="about" class="about">
     <h2 class="section-title" data-aos="fade-right">/ tentang saya</h2>
     <div class="about-grid">
@@ -470,35 +508,101 @@
     </div>
   </section>
 
-  <!-- SKILLS: tambahan Tailwind, Laravel, Canva, Microsoft Office -->
+  <!-- SKILLS: dua baris infinite scroll (kanan & kiri) -->
   <section id="skills">
     <h2 class="section-title" data-aos="fade-right">/ keahlian inti</h2>
-    <div class="skills-grid">
-      <!-- Core web dev -->
-      <div class="skill-card"><i class="fab fa-php"></i> PHP</div>
-      <div class="skill-card"><i class="fab fa-html5"></i> HTML</div>
-      <div class="skill-card"><i class="fab fa-css3-alt"></i> CSS</div>
-      <div class="skill-card"><i class="fab fa-js"></i> JavaScript</div>
-      <div class="skill-card"><i class="fas fa-code"></i> jQuery</div>
-      <div class="skill-card"><i class="fab fa-microsoft"></i> ASPX</div>
-      <div class="skill-card"><i class="fas fa-database"></i> SQL Server</div>
-      <div class="skill-card"><i class="fas fa-database"></i> MySQL</div>
-      <!-- Baru diminta -->
-      <div class="skill-card"><i class="fab fa-vuejs"></i> Vue</div>
-      <div class="skill-card"><i class="fas fa-code"></i> TypeScript</div>
-      <div class="skill-card"><i class="fab fa-laravel"></i> Laravel</div>
-      <div class="skill-card"><i class="fas fa-paint-brush"></i> Canva</div>
-      <div class="skill-card"><i class="fas fa-file-excel"></i> Excel</div>
-      <div class="skill-card"><i class="fas fa-file-word"></i> Word</div>
-      <div class="skill-card"><i class="fas fa-file-powerpoint"></i> PPT</div>
-      <!-- Tambahan dari asli (CI, Bootstrap, Corel) -->
-      <div class="skill-card"><i class="fas fa-leaf"></i> CI 3</div>
-      <div class="skill-card"><i class="fab fa-bootstrap"></i> Bootstrap</div>
-      <div class="skill-card"><i class="fas fa-paint-brush"></i> Corel Draw</div>
+    <div class="skills-marquee">
+      <!-- Baris pertama: slide ke kanan (gerak ke kiri secara visual) -->
+      <div class="marquee-row marquee-right">
+        <div class="marquee-content">
+          <!-- Daftar skill lengkap (18 item) + duplikasi untuk seamless loop -->
+          <!-- Set 1 -->
+          <div class="skill-card"><i class="fab fa-php"></i> PHP</div>
+          <div class="skill-card"><i class="fab fa-html5"></i> HTML</div>
+          <div class="skill-card"><i class="fab fa-css3-alt"></i> CSS</div>
+          <div class="skill-card"><i class="fab fa-js"></i> JavaScript</div>
+          <div class="skill-card"><i class="fas fa-code"></i> jQuery</div>
+          <div class="skill-card"><i class="fab fa-microsoft"></i> ASPX</div>
+          <div class="skill-card"><i class="fas fa-database"></i> SQL Server</div>
+          <div class="skill-card"><i class="fas fa-database"></i> MySQL</div>
+          <div class="skill-card"><i class="fab fa-vuejs"></i> Vue</div>
+          <div class="skill-card"><i class="fas fa-code"></i> TypeScript</div>
+          <div class="skill-card"><i class="fab fa-laravel"></i> Laravel</div>
+          <div class="skill-card"><i class="fas fa-paint-brush"></i> Canva</div>
+          <div class="skill-card"><i class="fas fa-file-excel"></i> Excel</div>
+          <div class="skill-card"><i class="fas fa-file-word"></i> Word</div>
+          <div class="skill-card"><i class="fas fa-file-powerpoint"></i> PPT</div>
+          <div class="skill-card"><i class="fas fa-leaf"></i> CI 3</div>
+          <div class="skill-card"><i class="fab fa-bootstrap"></i> Bootstrap</div>
+          <div class="skill-card"><i class="fas fa-paint-brush"></i> Corel Draw</div>
+          <!-- Set 2 (duplikat) -->
+          <div class="skill-card"><i class="fab fa-php"></i> PHP</div>
+          <div class="skill-card"><i class="fab fa-html5"></i> HTML</div>
+          <div class="skill-card"><i class="fab fa-css3-alt"></i> CSS</div>
+          <div class="skill-card"><i class="fab fa-js"></i> JavaScript</div>
+          <div class="skill-card"><i class="fas fa-code"></i> jQuery</div>
+          <div class="skill-card"><i class="fab fa-microsoft"></i> ASPX</div>
+          <div class="skill-card"><i class="fas fa-database"></i> SQL Server</div>
+          <div class="skill-card"><i class="fas fa-database"></i> MySQL</div>
+          <div class="skill-card"><i class="fab fa-vuejs"></i> Vue</div>
+          <div class="skill-card"><i class="fas fa-code"></i> TypeScript</div>
+          <div class="skill-card"><i class="fab fa-laravel"></i> Laravel</div>
+          <div class="skill-card"><i class="fas fa-paint-brush"></i> Canva</div>
+          <div class="skill-card"><i class="fas fa-file-excel"></i> Excel</div>
+          <div class="skill-card"><i class="fas fa-file-word"></i> Word</div>
+          <div class="skill-card"><i class="fas fa-file-powerpoint"></i> PPT</div>
+          <div class="skill-card"><i class="fas fa-leaf"></i> CI 3</div>
+          <div class="skill-card"><i class="fab fa-bootstrap"></i> Bootstrap</div>
+          <div class="skill-card"><i class="fas fa-paint-brush"></i> Corel Draw</div>
+        </div>
+      </div>
+      <!-- Baris kedua: slide ke kiri (gerak ke kanan secara visual) -->
+      <div class="marquee-row marquee-left">
+        <div class="marquee-content">
+          <!-- Set 1 -->
+          <div class="skill-card"><i class="fab fa-php"></i> PHP</div>
+          <div class="skill-card"><i class="fab fa-html5"></i> HTML</div>
+          <div class="skill-card"><i class="fab fa-css3-alt"></i> CSS</div>
+          <div class="skill-card"><i class="fab fa-js"></i> JavaScript</div>
+          <div class="skill-card"><i class="fas fa-code"></i> jQuery</div>
+          <div class="skill-card"><i class="fab fa-microsoft"></i> ASPX</div>
+          <div class="skill-card"><i class="fas fa-database"></i> SQL Server</div>
+          <div class="skill-card"><i class="fas fa-database"></i> MySQL</div>
+          <div class="skill-card"><i class="fab fa-vuejs"></i> Vue</div>
+          <div class="skill-card"><i class="fas fa-code"></i> TypeScript</div>
+          <div class="skill-card"><i class="fab fa-laravel"></i> Laravel</div>
+          <div class="skill-card"><i class="fas fa-paint-brush"></i> Canva</div>
+          <div class="skill-card"><i class="fas fa-file-excel"></i> Excel</div>
+          <div class="skill-card"><i class="fas fa-file-word"></i> Word</div>
+          <div class="skill-card"><i class="fas fa-file-powerpoint"></i> PPT</div>
+          <div class="skill-card"><i class="fas fa-leaf"></i> CI 3</div>
+          <div class="skill-card"><i class="fab fa-bootstrap"></i> Bootstrap</div>
+          <div class="skill-card"><i class="fas fa-paint-brush"></i> Corel Draw</div>
+          <!-- Set 2 (duplikat) -->
+          <div class="skill-card"><i class="fab fa-php"></i> PHP</div>
+          <div class="skill-card"><i class="fab fa-html5"></i> HTML</div>
+          <div class="skill-card"><i class="fab fa-css3-alt"></i> CSS</div>
+          <div class="skill-card"><i class="fab fa-js"></i> JavaScript</div>
+          <div class="skill-card"><i class="fas fa-code"></i> jQuery</div>
+          <div class="skill-card"><i class="fab fa-microsoft"></i> ASPX</div>
+          <div class="skill-card"><i class="fas fa-database"></i> SQL Server</div>
+          <div class="skill-card"><i class="fas fa-database"></i> MySQL</div>
+          <div class="skill-card"><i class="fab fa-vuejs"></i> Vue</div>
+          <div class="skill-card"><i class="fas fa-code"></i> TypeScript</div>
+          <div class="skill-card"><i class="fab fa-laravel"></i> Laravel</div>
+          <div class="skill-card"><i class="fas fa-paint-brush"></i> Canva</div>
+          <div class="skill-card"><i class="fas fa-file-excel"></i> Excel</div>
+          <div class="skill-card"><i class="fas fa-file-word"></i> Word</div>
+          <div class="skill-card"><i class="fas fa-file-powerpoint"></i> PPT</div>
+          <div class="skill-card"><i class="fas fa-leaf"></i> CI 3</div>
+          <div class="skill-card"><i class="fab fa-bootstrap"></i> Bootstrap</div>
+          <div class="skill-card"><i class="fas fa-paint-brush"></i> Corel Draw</div>
+        </div>
+      </div>
     </div>
   </section>
 
-  <!-- PROJECTS (tetap) -->
+  <!-- PROJECTS -->
   <section id="projects">
     <h2 class="section-title" data-aos="fade-right">/ projek saya</h2>
     <div class="projects-grid">
@@ -541,7 +645,7 @@
     </div>
   </section>
 
-  <!-- GALLERY (coding theme) -->
+  <!-- GALLERY -->
   <section id="gallery">
     <h2 class="section-title" data-aos="fade-right">/ gallery</h2>
     <div class="gallery-grid">
@@ -597,27 +701,24 @@
         if(target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
       });
     });
-    
-      const scriptURL = "https://script.google.com/macros/s/AKfycbwqplUxSjvwnIsq02vtjCnsuPstgbTT_Xj4HDsNK5RjZhkKppSnC37V6LSbIpS66F0/exec";
-      const form = document.forms["my-portfolio-contact"];
-      const btnSend = document.querySelector(".btn-send");
 
-      form.addEventListener("submit", (e) => {
-        e.preventDefault();
-        // ketika tombol send di klik
-        // tampilkan tombol loading, hilangkan tombol send
-        btnSend.classList.toggle("d-none");
-        fetch(scriptURL, { method: "POST", body: new FormData(form) })
-          .then((response) => {
-            // tampilkan tombol Send, hilangkan tombol Loading
-            btnSend.classList.toggle("d-none");
-            // tampilkan alert
-            // reset form
-            form.reset();
-            console.log("Success!", response);
-          })
-          .catch((error) => console.error("Error!", error.message));
-      });
-    </script>
+    const scriptURL = "https://script.google.com/macros/s/AKfycbwqplUxSjvwnIsq02vtjCnsuPstgbTT_Xj4HDsNK5RjZhkKppSnC37V6LSbIpS66F0/exec";
+    const form = document.forms["my-portfolio-contact"];
+    const btnSend = document.querySelector(".btn-send");
+
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      btnSend.classList.toggle("d-none"); // asumsi ada class d-none, sebaiknya tambahkan style .d-none { display: none; }
+      fetch(scriptURL, { method: "POST", body: new FormData(form) })
+        .then((response) => {
+          btnSend.classList.toggle("d-none");
+          form.reset();
+          console.log("Success!", response);
+        })
+        .catch((error) => console.error("Error!", error.message));
+    });
+  </script>
+  <!-- tambahan style untuk d-none jika belum ada -->
+  <style>.d-none { display: none; }</style>
 </body>
 </html>
