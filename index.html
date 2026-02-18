@@ -160,7 +160,7 @@
       padding-top: 130px;
       position: relative;
       overflow: hidden;
-      background: url('https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=2070&auto=format&fit=crop') center/cover no-repeat fixed;
+      background: url('https://www.google.com/url?sa=t&source=web&rct=j&url=https%3A%2F%2Fwallpaperbat.com%2Fdevelopment-wallpapers&ved=0CBYQjRxqFwoTCKDX1IWY4pIDFQAAAAAdAAAAABBG&opi=89978449') center/cover no-repeat fixed;
     }
     .hero::before {
       content: '';
@@ -415,7 +415,7 @@
 </head>
 <body>
   <nav class="navbar">
-    <div class="logo">✦ ahmadhusain</div>
+    <div class="logo">✦ ꦄꦃꦩꦢ ꦲꦸꦱꦻꦤ꧀</div>
     <div class="nav-links" id="navLinks">
       <a href="#home">Home</a>
       <a href="#about">About</a>
@@ -423,7 +423,7 @@
       <a href="#projects">Projects</a>
       <a href="#gallery">Gallery</a>
       <a href="#contact">Contact</a>
-      <span class="web3-badge" onclick="alert('🌐 web3 dev mode')"><i class="fas fa-cube"></i> web3</span>
+      <span class="web3-badge" onclick="location.href='https://wa.me/089509901360'"><i class="fas fa-cube"></i> Whatsapp</span>
     </div>
     <div class="hamburger" id="hamburger"><i class="fas fa-bars"></i></div>
   </nav>
@@ -545,12 +545,11 @@
   <section id="gallery">
     <h2 class="section-title" data-aos="fade-right">/ gallery</h2>
     <div class="gallery-grid">
-      <div class="gallery-item"><img src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=400&h=400&fit=crop&auto=format" alt="coding setup" loading="lazy"></div>
-      <div class="gallery-item"><img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=400&h=400&fit=crop&auto=format" alt="laptop code" loading="lazy"></div>
-      <div class="gallery-item"><img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=400&h=400&fit=crop&auto=format" alt="terminal" loading="lazy"></div>
-      <div class="gallery-item"><img src="https://images.unsplash.com/photo-1542831371-29b0f74f9713?w=400&h=400&fit=crop&auto=format" alt="code closeup" loading="lazy"></div>
-      <div class="gallery-item"><img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=400&h=400&fit=crop&auto=format" alt="desktop setup" loading="lazy"></div>
-      <div class="gallery-item"><img src="https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=400&h=400&fit=crop&auto=format" alt="javascript code" loading="lazy"></div>
+      <div class="gallery-item"><img src="./kuliner.PNG" alt="coding setup" loading="lazy"></div>
+      <div class="gallery-item"><img src="./tiket.PNG" alt="terminal" loading="lazy"></div>
+      <div class="gallery-item"><img src="./donasi.PNG" alt="code closeup" loading="lazy"></div>
+      <div class="gallery-item"><img src="./bengkel.PNG" alt="desktop setup" loading="lazy"></div>
+      <div class="gallery-item"><img src="./kasir.PNG" alt="javascript code" loading="lazy"></div>
     </div>
   </section>
 
@@ -559,17 +558,17 @@
     <h2 class="section-title" data-aos="fade-right">/ kontak saya</h2>
     <div class="contact-container">
       <div class="contact-form" data-aos="fade-up">
-        <form onsubmit="event.preventDefault(); alert('Terima kasih! pesan anda telah saya terima.');">
-          <div class="form-group"><input type="text" placeholder="Nama"></div>
-          <div class="form-group"><input type="email" placeholder="Email"></div>
-          <div class="form-group"><textarea rows="4" placeholder="Pesan..."></textarea></div>
+        <form name="my-portfolio-contact">
+          <div class="form-group"><input type="text" placeholder="Nama" id="username" name="username"></div>
+          <div class="form-group"><input type="email" placeholder="Email" id="email" name="email"></div>
+          <div class="form-group"><textarea rows="4" placeholder="Pesan..." name="message" id="message"></textarea></div>
           <button type="submit" class="submit-btn"><i class="fas fa-paper-plane"></i> Kirim</button>
         </form>
       </div>
       <div class="contact-info" data-aos="fade-left">
         <h3 style="font-size:1.8rem;">✨ hubungi</h3>
         <p><i class="fas fa-envelope" style="color:#3b82f6;"></i> ahmad.ummgl@gmail.com</p>
-        <p><i class="fas fa-phone-alt" style="color:#3b82f6;"></i> +62 812-3456-7890</p>
+        <p><i class="fas fa-phone-alt" style="color:#3b82f6;"></i> +62 895-0990-1360</p>
         <div class="social-links">
           <a href="https://github.com/ahmadxbyte"><i class="fab fa-github"></i></a>
           <a href="https://wa.me/089509901360"><i class="fab fa-whatsapp"></i></a>
@@ -598,6 +597,33 @@
         if(target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
       });
     });
-  </script>
+    
+      const scriptURL = "https://script.google.com/macros/s/AKfycbwqplUxSjvwnIsq02vtjCnsuPstgbTT_Xj4HDsNK5RjZhkKppSnC37V6LSbIpS66F0/exec";
+      const form = document.forms["my-portfolio-contact"];
+
+      const btnSend = document.querySelector(".btn-send");
+      const btnLoading = document.querySelector(".btn-loading");
+      const myAlert = document.querySelector(".my-alert");
+
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        // ketika tombol send di klik
+        // tampilkan tombol loading, hilangkan tombol send
+        btnLoading.classList.toggle("d-none");
+        btnSend.classList.toggle("d-none");
+        fetch(scriptURL, { method: "POST", body: new FormData(form) })
+          .then((response) => {
+            // tampilkan tombol Send, hilangkan tombol Loading
+            btnLoading.classList.toggle("d-none");
+            btnSend.classList.toggle("d-none");
+            // tampilkan alert
+            myAlert.classList.toggle("d-none");
+            // reset form
+            form.reset();
+            console.log("Success!", response);
+          })
+          .catch((error) => console.error("Error!", error.message));
+      });
+    </script>
 </body>
 </html>
