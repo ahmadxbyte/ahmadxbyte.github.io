@@ -1,0 +1,44 @@
+{
+  "version": "1.0.1",
+  "releasedAt": "2026-11-28",
+  "notes": [
+    "Badge pengingat talangan belum lunas di menu Mutasi & tab Talangan",
+    "Fitur Ikhlaskan talangan ke kategori Sosial / Hibah",
+    "Kategori Talangan disembunyikan dari form transaksi biasa & cara bayar pengembalian otomatis",
+    "Tutorial interaktif khusus fitur Talangan (otomatis hanya fitur baru bagi user yang sudah selesai tutorial)",
+    "Pembaruan teks panduan Asisten Keuangan The Hawa & tema GTA VI",
+    "Optimasi sinkronisasi pembaruan & lifecycle masa aktif paket"
+  ],
+  "beta": {
+    "version": "1.0.2-beta.1",
+    "releasedAt": "2026-11-28",
+    "notes": [
+      "Kunci Aplikasi & Login Cepat dengan Biometrik (Face ID / Sidik Jari)",
+      "Mode Offline dengan Snapshot Data & Antrean Sinkron Otomatis",
+      "Indikator Status Offline & Antrean Sinkronisasi",
+      "Pencarian Lanjutan pada Data Transaksi & Talangan (nama, dompet, nominal, tanggal, catatan)",
+      "Financial Health Score (0-100) & Insight Mingguan Otomatis dari The Hawa"
+    ]
+  },
+  "history": [
+    {
+      "version": "1.0.1",
+      "releasedAt": "2026-11-28",
+      "notes": [
+        "Badge pengingat talangan belum lunas di menu Mutasi & tab Talangan",
+        "Fitur Ikhlaskan talangan ke kategori Sosial / Hibah",
+        "Kategori Talangan disembunyikan dari form transaksi biasa & cara bayar pengembalian otomatis",
+        "Tutorial interaktif khusus fitur Talangan (otomatis hanya fitur baru bagi user yang sudah selesai tutorial)",
+        "Pembaruan teks panduan Asisten Keuangan The Hawa & tema GTA VI",
+        "Optimasi sinkronisasi pembaruan & lifecycle masa aktif paket"
+      ]
+    },
+    {
+      "version": "1.0.0",
+      "releasedAt": "2026-11-28",
+      "notes": [
+        "Rilis v1.0.0: Validasi cara bayar Cash/Bank, proteksi saldo dompet anti-minus, dan asisten keuangan The Hawa"
+      ]
+    }
+  ]
+}
