@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'mm-v1.0.2-b8';
+const CACHE_VERSION = 'mm-v1.0.2-b9';
 const CORE_ASSETS = [
   './',
   './index.html',
